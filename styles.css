@@ -15,6 +15,7 @@
   text-decoration: none;
   scroll-behavior: smooth;
   margin: 0;
+  overflow: hidden;
 }
 html {
   -webkit-text-size-adjust: none;
@@ -37,7 +38,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;;
-  padding: 40px 100px;
+  padding: 40px 70px;
   z-index: 1000;
   display: flex;
   justify-content: flex-end;
@@ -60,6 +61,7 @@ header {
   background-size: 30px;
   background-position: center;
   cursor: pointer;
+  opacity: 0;
 }
 .toggle.active {
   background: url(https://i.ibb.co/rt3HybH/close.png);
@@ -67,6 +69,7 @@ header {
   background-size: 25px;
   background-position: center;
   cursor: pointer;
+  opacity: 0;
 }
 
 section #fonts {
@@ -199,54 +202,160 @@ section #fonts {
   flex-direction: column;
   display: flex;
   justify-content: center;
-  margin-top: 130px;
+  margin-top: 0px;
+  margin-left: 0px;
   color: rgb(236, 236, 236);
   font-weight: 600;
   left: 0;
+  top: -10px;
   -webkit-transform: translateY(0) scaleY(1) scaleX(1);
   transform: translateY(0) scaleY(1) scaleX(1);
   -webkit-transform-origin: 50% 0%;
   transform-origin: 50% 0%;
   -webkit-filter: blur(0);
-  filter: blur(0);
+  filter: blur(2px);
   opacity: 1;
+  background-color: rgba(229, 199, 159, 0.2);
+  height: 100%;
 }
+
+#sidebar2 {
+  position: absolute;
+  flex-direction: row;
+  display: flex;
+  gap: 0.54em;
+  color: rgb(236, 236, 236);
+  font-weight: 600;
+  top: 0;
+  left: -10px;
+  -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+  transform: translateY(0) scaleY(1) scaleX(1);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+  -webkit-filter: blur(0);
+  filter: blur(2px);
+  opacity: 1;
+  background-color: rgba(229, 199, 159, 0.9);
+  z-index: 2;
+  width: 100%;
+}
+
+/* CSS for the third sidebar (covers the right side vertically) */
+#sidebar3 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.54em;
+  margin-top: 3px;
+  color: rgb(236, 236, 236);
+  font-weight: 600;
+  top: 0;
+  right: 0;
+  -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+  transform: translateY(0) scaleY(1) scaleX(1);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+  -webkit-filter: blur(0);
+  filter: blur(2px);
+  opacity: 1;
+  background-color: rgba(229, 199, 159, 0.2);
+  height: 100%;
+}
+
+/* CSS for the fourth sidebar (covers the bottom horizontally) */
+#sidebar4 {
+  position: absolute;
+  flex-direction: row;
+  display: flex;
+  gap: 0.54em;
+  color: rgb(236, 236, 236);
+  font-weight: 600;
+  bottom: 0;
+  left: 10px;
+  -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+  transform: translateY(0) scaleY(1) scaleX(1);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+  -webkit-filter: blur(0);
+  filter: blur(2px);
+  opacity: 1;
+  background-color: rgba(229, 199, 159, 0.9);
+  z-index: 2;
+}
+
 
 .sidebar p{
   font-family: my1;
   writing-mode: vertical-lr;
   text-orientation: sideways;
-  font-size: 0.5em;
-  margin-bottom: 30px;
+  font-size: 0.56em;
+  margin-bottom: 15px;
+  margin-left: 2px;
+  overflow: hidden;
+  filter: blur(2px);
 }
+
+#sidebar2 p {
+  font-family: my1;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  font-size: 0.56em;
+  margin-right: 2px;
+  overflow: hidden;
+  margin-top: 3px;
+}
+
+/* Styling for paragraph elements inside sidebar3 */
+#sidebar3 p {
+  font-family: my1;
+  writing-mode: vertical-rl; /* Text orientation from top to bottom */
+  transform: rotate(180deg);
+  text-orientation: sideways;
+  font-size: 0.56em;
+  overflow: hidden;
+}
+
+/* Styling for paragraph elements inside sidebar4 */
+#sidebar4 p {
+  font-family: my1;
+  writing-mode: horizontal-tb; /* Ensure text orientation is horizontal */
+  text-orientation: mixed;
+  font-size: 0.54em;
+  margin-bottom: 7px;
+  overflow: hidden;
+}
+
+
 
 /* Animations */
 #a02,
 .text,
-.toggle {
+.toggle,
+.sidebar {
 	-webkit-animation: slide-in-blurred-left 2s cubic-bezier(0.190, 1.000, 0.220, 1.000) both;
   animation: slide-in-blurred-left 2s cubic-bezier(0.190, 1.000, 0.220, 1.000) both;
 }
 
 .sidebar.hidden {
-  -webkit-animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
-  animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+  -webkit-animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) 0.2s both;
+  animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) 0.2s both;
 }
 
 header.hidden {
-  -webkit-animation: slide-out-blurred-left 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) 0.7s both;
-  animation: slide-out-blurred-left 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) 0.7s both;
+  -webkit-animation: slide-out-blurred-right 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) 0.3s both;
+  animation: slide-out-blurred-right 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) 0.3s both;
 }
 
-#a02a.hidden{
-	-webkit-animation: slide-out-blurred-tl 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
-  animation: slide-out-blurred-tl 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+#a02a.hidden {
+	-webkit-animation: slide-out-blurred-bottom 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+	animation: slide-out-blurred-bottom 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 }
 
 #a02b.hidden {
-	-webkit-animation: slide-out-blurred-br 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
-  animation: slide-out-blurred-br 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+  animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+  -webkit-animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 }
+
 
 /* Keyframes */
 @-webkit-keyframes slide-in-blurred-left {
@@ -331,6 +440,47 @@ header.hidden {
   }
 }
 
+@-webkit-keyframes slide-out-blurred-top2 {
+  0% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+            transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px) scaleY(1.5) scaleX(1.2);
+            transform: translateY(-1000px) scaleY(1.5) scaleX(1.2);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    -webkit-filter: blur(30px);
+            filter: blur(30px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-blurred-top2 {
+  0% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+            transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px) scaleY(1.5) scaleX(1.2);
+            transform: translateY(-1000px) scaleY(1.5) scaleX(1.2);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    -webkit-filter: blur(35px);
+            filter: blur(35px);
+    opacity: 0;
+  }
+}
+
 @-webkit-keyframes slide-out-blurred-left {
   0% {
     -webkit-transform: translateX(0) scaleY(1) scaleX(1);
@@ -372,10 +522,10 @@ header.hidden {
   }
 }
 
-@-webkit-keyframes slide-out-blurred-tl {
+@-webkit-keyframes slide-out-blurred-right {
   0% {
-    -webkit-transform: translate(0, 0) skew(0deg, 0deg);
-            transform: translate(0, 0) skew(0deg, 0deg);
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
     -webkit-filter: blur(0);
@@ -383,19 +533,19 @@ header.hidden {
     opacity: 1;
   }
   100% {
-    -webkit-transform: translate(-1000px, -1000px) skew(80deg, 10deg);
-            transform: translate(-1000px, -1000px) skew(80deg, 10deg);
-    -webkit-transform-origin: 100% 0%;
-            transform-origin: 100% 0%;
+    -webkit-transform: translateX(1000px) scaleX(2) scaleY(0.2);
+            transform: translateX(1000px) scaleX(2) scaleY(0.2);
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
     -webkit-filter: blur(40px);
             filter: blur(40px);
     opacity: 0;
   }
 }
-@keyframes slide-out-blurred-tl {
+@keyframes slide-out-blurred-right {
   0% {
-    -webkit-transform: translate(0, 0) skew(0deg, 0deg);
-            transform: translate(0, 0) skew(0deg, 0deg);
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
     -webkit-filter: blur(0);
@@ -403,55 +553,53 @@ header.hidden {
     opacity: 1;
   }
   100% {
-    -webkit-transform: translate(-1000px, -1000px) skew(80deg, 10deg);
-            transform: translate(-1000px, -1000px) skew(80deg, 10deg);
-    -webkit-transform-origin: 100% 0%;
-            transform-origin: 100% 0%;
-    -webkit-filter: blur(40px);
-            filter: blur(40px);
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes slide-out-blurred-br {
-  0% {
-    -webkit-transform: translate(0, 0) skew(0deg, 0deg);
-            transform: translate(0, 0) skew(0deg, 0deg);
-    -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translate(1000px, 1000px) skew(80deg, 10deg);
-            transform: translate(1000px, 1000px) skew(80deg, 10deg);
-    -webkit-transform-origin: 0% 100%;
-            transform-origin: 0% 100%;
-    -webkit-filter: blur(40px);
-            filter: blur(40px);
-    opacity: 0;
-  }
-}
-@keyframes slide-out-blurred-br {
-  0% {
-    -webkit-transform: translate(0, 0) skew(0deg, 0deg);
-            transform: translate(0, 0) skew(0deg, 0deg);
-    -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
-    -webkit-filter: blur(0);
-            filter: blur(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translate(1000px, 1000px) skew(80deg, 10deg);
-            transform: translate(1000px, 1000px) skew(80deg, 10deg);
-    -webkit-transform-origin: 0% 100%;
-            transform-origin: 0% 100%;
+    -webkit-transform: translateX(1000px) scaleX(2) scaleY(0.2);
+            transform: translateX(1000px) scaleX(2) scaleY(0.2);
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
     -webkit-filter: blur(40px);
             filter: blur(40px);
     opacity: 0;
   }
 }
 
-
+@-webkit-keyframes slide-out-blurred-bottom {
+  0% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+            transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(1000px) scaleY(1.5) scaleX(1.2);
+            transform: translateY(1000px) scaleY(1.5) scaleX(1.2);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-filter: blur(40px);
+            filter: blur(40px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-blurred-bottom {
+  0% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+            transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(1000px) scaleY(1.5) scaleX(1.2);
+            transform: translateY(1000px) scaleY(1.5) scaleX(1.2);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-filter: blur(30px);
+            filter: blur(30px);
+    opacity: 0;
+  }
+}
