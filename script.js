@@ -4,9 +4,18 @@ const showcase = document.querySelector('.showcase');
 menuToggle.addEventListener('click', () => {
   menuToggle.classList.toggle('active');
   showcase.classList.toggle('active');
+  if (!showcase.classList.contains('active')) {
+    showcase.style.right = '';
+  }
 });
 
-document.getElementById('animationButton').addEventListener('click', function() {
+const toggleVisibility = (element, delay) => {
+  setTimeout(() => {
+    element.classList.toggle('hidden');
+  }, delay);
+};
+
+document.getElementById('animationButton').addEventListener('click', () => {
   const animationButton = document.getElementById('animationButton');
   const sidebar = document.getElementById('sidebar');
   const pageHeader = document.getElementById('pageHeader');
@@ -16,44 +25,47 @@ document.getElementById('animationButton').addEventListener('click', function() 
   animationButton.style.transition = 'opacity 0.5s';
   animationButton.style.pointerEvents = 'none';
 
-  setTimeout(function() {
-    animationButton.style.opacity = '0';
-  }, 50);
+  const delayTimes = {
+    buttonOpacity: 50,
+    buttonDisplay: 500,
+    sidebarToggle: 100,
+    a02bToggle: 100,
+    a02aToggle: 80,
+    sidebar2Toggle: 110,
+    sidebar3Toggle: 120,
+    sidebar4Toggle: 130,
+    showcaseDelay: showcase.classList.contains('active') ? 1000 : 0,
+  };
 
-  setTimeout(function() {
+  setTimeout(() => {
+    animationButton.style.opacity = '0';
+  }, delayTimes.buttonOpacity);
+
+  setTimeout(() => {
     animationButton.style.display = '';
     animationButton.style.opacity = '0';
     animationButton.style.pointerEvents = 'none';
-  }, 500);
 
-  setTimeout(function() {
-    sidebar.classList.toggle('hidden');
-    pageHeader.classList.toggle('hidden');
+    setTimeout(() => {
+      sidebar.classList.toggle('hidden');
+      pageHeader.classList.toggle('hidden');
 
-    setTimeout(function() {
-      a02b.classList.toggle('hidden');
-    }, 100);
+      toggleVisibility(a02b, delayTimes.a02bToggle);
+      toggleVisibility(a02a, delayTimes.a02aToggle);
+      toggleVisibility(document.getElementById('sidebar2'), delayTimes.sidebar2Toggle);
+      toggleVisibility(document.getElementById('sidebar3'), delayTimes.sidebar3Toggle);
+      toggleVisibility(document.getElementById('sidebar4'), delayTimes.sidebar4Toggle);
+    }, delayTimes.sidebarToggle);
+  }, delayTimes.buttonDisplay);
 
-    setTimeout(function() {
-      a02a.classList.toggle('hidden');
-    }, 80);
+  if (showcase.classList.contains('active')) {
+    showcase.classList.remove('active');
+    showcase.style.right = '';
+  }
 
-    // Animation for Sidebar 2 after a delay
-    setTimeout(function() {
-      const sidebar2 = document.getElementById('sidebar2');
-      sidebar2.classList.toggle('hidden');
-    }, 110);
-
-    // Animation for Sidebar 3 after a delay
-    setTimeout(function() {
-      const sidebar3 = document.getElementById('sidebar3');
-      sidebar3.classList.toggle('hidden');
-    }, 120);
-
-    // Animation for Sidebar 4 after a delay
-    setTimeout(function() {
-      const sidebar4 = document.getElementById('sidebar4');
-      sidebar4.classList.toggle('hidden');
-    }, 130);
-  }, 100);
+  setTimeout(() => {
+    if (!showcase.classList.contains('active')) {
+      menuToggle.classList.remove('active');
+    }
+  }, delayTimes.showcaseDelay);
 });

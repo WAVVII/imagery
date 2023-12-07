@@ -157,6 +157,7 @@ section #fonts {
   justify-content: space-between;
   align-items: center;
   transition: 0.5s;
+  -webkit-transition: 0.5s;
   z-index: 2;
 }
 .showcase.active
