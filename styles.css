@@ -48,7 +48,7 @@ header {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   -webkit-filter: blur(0);
-  filter: blur(0);
+  filter: blur(.8px);
   opacity: 1;
 }
 
@@ -56,19 +56,21 @@ header {
   position: relative;
   width: 60px;
   height: 60px;
-  background: url(https://i.ibb.co/HrfVRcx/menu.png);
+  background: url(sprites/menuopen.png);
   background-repeat: no-repeat;
   background-size: 30px;
   background-position: center;
   cursor: pointer;
   opacity: 0;
+  transition: .6s;
 }
 .toggle.active {
-  background: url(https://i.ibb.co/rt3HybH/close.png);
+  background: url(sprites/menuclose.png);
   background-repeat: no-repeat;
   background-size: 25px;
   background-position: center;
   cursor: pointer;
+  transition: .5s;
   opacity: 0;
 }
 
@@ -97,6 +99,7 @@ section #fonts {
   letter-spacing: 5px;
   line-height: 1.7em;
   cursor: default;
+  filter: blur(0.7px);
 }
 
 #a02b {
@@ -104,6 +107,7 @@ section #fonts {
   letter-spacing: 5px;
   line-height: 1.7em;
   cursor: default;
+  filter: blur(0.7px);
 }
 
 .text h4 {
