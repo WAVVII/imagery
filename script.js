@@ -26,6 +26,7 @@ document.getElementById('animationButton').addEventListener('click', () => {
   const pageHeader = document.getElementById('pageHeader');
   const a02a = document.getElementById('a02a');
   const a02b = document.getElementById('a02b');
+  const menuu = document.getElementById('menu');
 
   animationButton.style.transition = 'opacity 0.5s';
   animationButton.style.pointerEvents = 'none';
@@ -71,6 +72,8 @@ document.getElementById('animationButton').addEventListener('click', () => {
   setTimeout(() => {
     if (!showcase.classList.contains('active')) {
       menuToggle.classList.remove('active');
+      const element = document.getElementById('menu');
+      element.style.display= 'none'
     }
   }, delayTimes.showcaseDelay);
 
