@@ -91,5 +91,23 @@ document.getElementById('animationButton').addEventListener('click', () => {
       menuToggle.style.cursor = 'default'; // Change cursor style to default
     }
   }, totalAnimationTime);
+
+  setTimeout(() => {
+    const showcase = document.querySelector('.showcase');
+    const menu = document.getElementById('menu');
+
+    // Add slide-out animation classes to showcase and menu sections
+    showcase.classList.add('slide-in-top');
+    menu.classList.add('slide-in-top');
+
+    // Remove elements from the DOM after slide-out animation completes
+    showcase.addEventListener('animationend', () => {
+      showcase.style.display = 'none';
+    });
+
+    menu.addEventListener('animationend', () => {
+      menu.style.display = 'none';
+    });
+  }, totalAnimationTime - 400);
   
 });
