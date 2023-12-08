@@ -16,6 +16,9 @@ const toggleVisibility = (element, delay) => {
 };
 
 document.getElementById('animationButton').addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  showcase.classList.toggle('active');
+
   const animationButton = document.getElementById('animationButton');
   const sidebar = document.getElementById('sidebar');
   const pageHeader = document.getElementById('pageHeader');
@@ -61,6 +64,45 @@ document.getElementById('animationButton').addEventListener('click', () => {
   if (showcase.classList.contains('active')) {
     showcase.classList.remove('active');
     showcase.style.right = '';
+  }
+
+  const totalAnimationDelay =
+    delayTimes.buttonDisplay +
+    delayTimes.sidebarToggle +
+    Math.max(
+      delayTimes.a02bToggle,
+      delayTimes.a02aToggle,
+      delayTimes.sidebar2Toggle,
+      delayTimes.sidebar3Toggle,
+      delayTimes.sidebar4Toggle
+    ) +
+    delayTimes.showcaseDelay;
+
+  // Loading multiple files sequentially
+  const filesToLoad = [
+    'index.html',
+    'distindexc89b3780.css',
+    'index.e8e8a74c.js',
+    '1.763bbef2.jpg',
+    '1.94f07af4.jpg'
+  ];
+
+  let currentIndex = 0;
+
+  function loadNextFile() {
+    if (currentIndex < filesToLoad.length) {
+      fetch(`dist/${filesToLoad[currentIndex]}`)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('content').innerHTML = data;
+          document.getElementById('content').classList.add('slide-in');
+          currentIndex++;
+          loadNextFile(); // Load the next file recursively
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
   }
 
   setTimeout(() => {
