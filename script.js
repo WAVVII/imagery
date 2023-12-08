@@ -110,6 +110,6 @@ document.getElementById('animationButton').addEventListener('click', () => {
     menu.addEventListener('animationend', () => {
       menu.style.display = 'none';
     });
-  }, totalAnimationTime - 400);
+  }, totalAnimationTime - 350);
   
 });
