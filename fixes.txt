@@ -1,0 +1,8 @@
+Orange background
+Classy font
+slide up smooth transition after home page button is pressed
+back button to be working if there is a movement between pg1 and pg2
+menu anim should be implemented
+pictures replaced
+transparent bg on main logo to be on pg 2 and menu and other pages
+ANIMATION EVERYWHERE, more animation libraries to be more optimized
