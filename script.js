@@ -114,7 +114,6 @@ document.getElementById('animationButton').addEventListener('click', () => {
 });
 
 // Fetching and displaying content
-
 document.getElementById('animationButton').addEventListener('click', async () => {
   try {
     const response = await fetch('dist/index.html'); // Fetch the content
@@ -124,7 +123,7 @@ document.getElementById('animationButton').addEventListener('click', async () =>
     document.getElementById('fetchedContent').innerHTML = data;
 
     // Fetch linked CSS from the fetched HTML content and append to the current document's head
-    const fetchedDocument = new DOMParser().parseFromString(htmlData, 'text/html');
+    const fetchedDocument = new DOMParser().parseFromString(data, 'text/html');
     const stylesheets = fetchedDocument.querySelectorAll('link[rel="stylesheet"]');
     stylesheets.forEach((link) => {
       const newLink = document.createElement('link');
@@ -140,19 +139,8 @@ document.getElementById('animationButton').addEventListener('click', async () =>
       newScript.src = `dist/${script.getAttribute('src')}`;
       document.body.appendChild(newScript);
     });
-
-    // Fetch and display images from the fetched HTML content
-    const images = document.querySelectorAll('img');
-    images.forEach((img) => {
-      const src = img.getAttribute('src');
-      if (src.startsWith('dist/')) {
-        const newImg = new Image();
-        newImg.src = src;
-        document.body.appendChild(newImg);
-      }
-    });
+    
   } catch (error) {
     console.error('Error fetching content:', error);
   }
-  
 });
