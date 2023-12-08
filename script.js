@@ -111,5 +111,48 @@ document.getElementById('animationButton').addEventListener('click', () => {
       menu.style.display = 'none';
     });
   }, totalAnimationTime - 350);
+});
+
+// Fetching and displaying content
+
+document.getElementById('animationButton').addEventListener('click', async () => {
+  try {
+    const response = await fetch('dist/index.html'); // Fetch the content
+    const data = await response.text(); // Get the text content
+
+    // Display the fetched content in the 'fetchedContent' div
+    document.getElementById('fetchedContent').innerHTML = data;
+
+    // Fetch linked CSS from the fetched HTML content and append to the current document's head
+    const fetchedDocument = new DOMParser().parseFromString(htmlData, 'text/html');
+    const stylesheets = fetchedDocument.querySelectorAll('link[rel="stylesheet"]');
+    stylesheets.forEach((link) => {
+      const newLink = document.createElement('link');
+      newLink.rel = 'stylesheet';
+      newLink.href = `dist/${link.getAttribute('href')}`;
+      document.head.appendChild(newLink);
+    });
+
+    // Fetch linked JavaScript from the fetched HTML content and append to the current document's body
+    const scripts = fetchedDocument.querySelectorAll('script');
+    scripts.forEach((script) => {
+      const newScript = document.createElement('script');
+      newScript.src = `dist/${script.getAttribute('src')}`;
+      document.body.appendChild(newScript);
+    });
+
+    // Fetch and display images from the fetched HTML content
+    const images = document.querySelectorAll('img');
+    images.forEach((img) => {
+      const src = img.getAttribute('src');
+      if (src.startsWith('dist/')) {
+        const newImg = new Image();
+        newImg.src = src;
+        document.body.appendChild(newImg);
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching content:', error);
+  }
   
 });

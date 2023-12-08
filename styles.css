@@ -38,13 +38,6 @@ body {
         /* Standard syntax */
 }
 
-section {
-        display: flex;
-        height: 100%;
-        padding: 1.2rem clamp(1rem, 5%, 3rem);
-        background-color: rgb(229, 199, 159);
-}
-
 header {
         position: absolute;
         top: 0;
@@ -166,6 +159,7 @@ section #fonts {
         transition: 0.5s;
         -webkit-transition: 0.5s;
         z-index: 2;
+        background-color: rgb(229, 199, 159);
 }
 
 .showcase.active {
@@ -347,6 +341,9 @@ section #fonts {
         filter: blur(2px);
 }
 
+.fetchedContent {
+        height: 100%;
+}
 
 
 /* Animations */
